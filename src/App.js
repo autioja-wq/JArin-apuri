@@ -145,7 +145,7 @@ function App() {
         var sig = signal(r, m, s5, s20);
         results.push({ ticker: s.ticker, name: s.name, price: d.price, change: d.change, rsi: r, mom: m, sma5: s5, sma20: s20, sig: sig, err: null });
       } catch(e) { results.push({ ticker: s.ticker, name: s.name, err: e.message }); }
-      await new Promise(function(r) { setTimeout(r, 300); });
+      await new Promise(function(r) { setTimeout(r, 8000); });
     }
     setStocks(results); setPct(100); setLoading(false);
     var valid = results.filter(function(s) { return !s.err; });
