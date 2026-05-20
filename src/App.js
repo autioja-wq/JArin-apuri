@@ -1,21 +1,13 @@
 import React, { useState, useCallback } from "react";
 
 var STOCKS = [
-  { ticker: "NOKIA", exchange: "HEL", name: "Nokia" },
-  { ticker: "STERV", exchange: "HEL", name: "Stora Enso" },
-  { ticker: "FORTUM", exchange: "HEL", name: "Fortum" },
-  { ticker: "NESTE", exchange: "HEL", name: "Neste" },
-  { ticker: "KNEBV", exchange: "HEL", name: "Kone" },
-  { ticker: "UPM", exchange: "HEL", name: "UPM" },
-  { ticker: "ORNBV", exchange: "HEL", name: "Orion B" },
-  { ticker: "WRT1V", exchange: "HEL", name: "Wartsila" },
-  { ticker: "KEMIRA", exchange: "HEL", name: "Kemira" },
-  { ticker: "OUT1V", exchange: "HEL", name: "Outokumpu" },
-  { ticker: "METSO", exchange: "HEL", name: "Metso" },
-  { ticker: "ELISA", exchange: "HEL", name: "Elisa" },
-  { ticker: "SAMPO", exchange: "HEL", name: "Sampo" },
-  { ticker: "CGCBV", exchange: "HEL", name: "Cargotec" },
-  { ticker: "TYRES", exchange: "HEL", name: "Nokian Renkaat" }
+  { ticker: "NOKIA", exchange: "OMXH", name: "Nokia" },
+  { ticker: "FORTUM", exchange: "OMXH", name: "Fortum" },
+  { ticker: "NESTE", exchange: "OMXH", name: "Neste" },
+  { ticker: "KNEBV", exchange: "OMXH", name: "Kone" },
+  { ticker: "UPM", exchange: "OMXH", name: "UPM" },
+  { ticker: "SAMPO", exchange: "OMXH", name: "Sampo" },
+  { ticker: "ELISA", exchange: "OMXH", name: "Elisa" }
 ];
 
 var APIKEY = "01c5d366200d40f2a4fddf40629b0856";
@@ -145,7 +137,7 @@ function App() {
         var sig = signal(r, m, s5, s20);
         results.push({ ticker: s.ticker, name: s.name, price: d.price, change: d.change, rsi: r, mom: m, sma5: s5, sma20: s20, sig: sig, err: null });
       } catch(e) { results.push({ ticker: s.ticker, name: s.name, err: e.message }); }
-      await new Promise(function(r) { setTimeout(r, 8000); });
+      await new Promise(function(r) { setTimeout(r, 10000); });
     }
     setStocks(results); setPct(100); setLoading(false);
     var valid = results.filter(function(s) { return !s.err; });
