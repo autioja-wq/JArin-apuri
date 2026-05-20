@@ -69,17 +69,18 @@ function signal(r, m, s5, s20) {
 }
 
 async function fetchStock(ticker, exchange) {
-var url = "https://api.twelvedata.com/time_series?symbol=" + ticker + "&exchange=OMXH&interval=1day&outputsize=60&apikey=" + APIKEY;
+  var symbol = ticker + ".HE";
+  var url = "https://query1.finance.yahoo.com/v8/finance/chart/" + symbol + "?interval=1d&range=60d";
   var res = await fetch(url);
   if (!res.ok) throw new Error("HTTP " + res.status);
   var json = await res.json();
-  if (json.status === "error") throw new Error(json.message || "Virhe");
-  if (!json.values || json.values.length === 0) throw new Error("Ei dataa");
-  var vals = json.values.slice().reverse();
-  var closes = vals.map(function(v) { return parseFloat(v.close); });
-  var price = closes[closes.length - 1];
-  var prev = closes[closes.length - 2] || price;
-  return { closes: closes, price: price, change: ((price - prev) / prev) * 100 };
+  var result = json.chart.result[0];
+  if (!result) throw new Error("Ei dataa");
+  var closes = result.indicators.quote[0].close.filter(function(x) { return x !== null; });
+  var price = result.meta.regularMarketPrice;
+  var prevClose = result.meta.previousClose;
+  var change = ((price - prevClose) / prevClose) * 100;
+  return { closes: closes, price: price, change: change };
 }
 
 async function askAI(data) {
@@ -137,7 +138,7 @@ function App() {
         var sig = signal(r, m, s5, s20);
         results.push({ ticker: s.ticker, name: s.name, price: d.price, change: d.change, rsi: r, mom: m, sma5: s5, sma20: s20, sig: sig, err: null });
       } catch(e) { results.push({ ticker: s.ticker, name: s.name, err: e.message }); }
-      await new Promise(function(r) { setTimeout(r, 10000); });
+      await new Promise(function(r) { setTimeout(r, 500); });
     }
     setStocks(results); setPct(100); setLoading(false);
     var valid = results.filter(function(s) { return !s.err; });
