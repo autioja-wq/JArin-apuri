@@ -77,7 +77,7 @@ function signal(r, m, s5, s20) {
 }
 
 async function fetchStock(ticker, exchange) {
-var url = "https://api.twelvedata.com/time_series?symbol=" + ticker + "&mic_code=XHEL&interval=1day&outputsize=60&apikey=" + APIKEY;
+var url = "https://api.twelvedata.com/time_series?symbol=" + ticker + "&exchange=OMXH&interval=1day&outputsize=60&apikey=" + APIKEY;
   var res = await fetch(url);
   if (!res.ok) throw new Error("HTTP " + res.status);
   var json = await res.json();
