@@ -88,7 +88,7 @@ async function askAI(data) {
   var lines = data.map(function(s) {
     return s.name + ": " + s.price.toFixed(2) + "EUR (" + (s.change >= 0 ? "+" : "") + s.change.toFixed(2) + "%), RSI " + (s.rsi ? s.rsi.toFixed(0) : "?") + ", Mom " + (s.mom ? s.mom.toFixed(1) : "?") + "%, " + s.sig.sig;
   }).join("\n");
-  var res = await fetch("https://api.anthropic.com/v1/messages", {
+  var res = await fetch("/api/proxy", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -102,7 +102,6 @@ async function askAI(data) {
   var block = json.content && json.content.find(function(b) { return b.type === "text"; });
   return block ? block.text : "Virhe.";
 }
-
 function App() {
   var allTickers = STOCKS.map(function(s) { return s.ticker; });
   var [stocks, setStocks] = useState([]);
