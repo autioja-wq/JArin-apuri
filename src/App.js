@@ -12,14 +12,14 @@ var STOCKS = [
 
 var APIKEY = "01c5d366200d40f2a4fddf40629b0856";
 
-var BG = "#07080A";
-var PANEL = "#0E1014";
-var BORDER = "#1E2530";
-var GREEN = "#00E5C0";
-var GOLD = "#FFD166";
-var RED = "#FF3E5E";
-var TEXT = "#DDE4EE";
-var MUTED = "#4A5568";
+var BG = "#F0F2F5";
+var PANEL = "#FFFFFF";
+var BORDER = "#D1D5DB";
+var GREEN = "#00A884";
+var GOLD = "#B45309";
+var RED = "#DC2626";
+var TEXT = "#111827";
+var MUTED = "#6B7280";
 
 function rsi(closes) {
   var period = 14;
@@ -149,7 +149,7 @@ function App() {
   var sells = stocks.filter(function(s) { return s.sig && s.sig.sig === "MYYNTI"; });
 
   return React.createElement("div", { style: { fontFamily: "monospace", background: BG, minHeight: "100vh", color: TEXT, maxWidth: 480, margin: "0 auto" } },
-    React.createElement("style", null, "* { box-sizing: border-box; } body { margin: 0; background: #07080A; } @keyframes spin { to { transform: rotate(360deg); } }"),
+  React.createElement("style", null, "* { box-sizing: border-box; } body { margin: 0; background: #F0F2F5; } @keyframes spin { to { transform: rotate(360deg); } }")
 
     React.createElement("div", { style: { background: PANEL, borderBottom: "1px solid " + BORDER, padding: "14px 16px", position: "sticky", top: 0, zIndex: 10 } },
       React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: GREEN, letterSpacing: "0.15em" } }, "OMX SCANNER"),
