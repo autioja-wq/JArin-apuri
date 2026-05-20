@@ -149,7 +149,7 @@ function App() {
   var sells = stocks.filter(function(s) { return s.sig && s.sig.sig === "MYYNTI"; });
 
   return React.createElement("div", { style: { fontFamily: "monospace", background: BG, minHeight: "100vh", color: TEXT, maxWidth: 480, margin: "0 auto" } },
-  React.createElement("style", null, "* { box-sizing: border-box; } body { margin: 0; background: #F0F2F5; } @keyframes spin { to { transform: rotate(360deg); } }")
+  React.createElement("style", null, "* { box-sizing: border-box; } body { margin: 0; background: #F0F2F5; } @keyframes spin { to { transform: rotate(360deg); } }"),
 
     React.createElement("div", { style: { background: PANEL, borderBottom: "1px solid " + BORDER, padding: "14px 16px", position: "sticky", top: 0, zIndex: 10 } },
       React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: GREEN, letterSpacing: "0.15em" } }, "OMX SCANNER"),
