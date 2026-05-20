@@ -187,12 +187,7 @@ function App() {
         React.createElement("button", { onClick: function() { setTab("all"); }, style: { flex: 1, padding: 9, borderRadius: 8, border: "none", cursor: "pointer", fontFamily: "monospace", fontSize: 11, fontWeight: 700, background: tab === "all" ? GREEN : PANEL, color: tab === "all" ? "#000" : MUTED } }, "Kaikki")
       ),
 
-      (aiLoad || ai) && tab === "scan" && React.createElement("div", { style: { background: "#00E5C00D", border: "1px solid #00E5C033", borderRadius: 10, padding: 14, marginBottom: 12 } },
-        React.createElement("div", { style: { fontSize: 9, color: GREEN, letterSpacing: "0.15em", marginBottom: 8, textTransform: "uppercase" } }, "AI-analyysi"),
-        aiLoad
-          ? React.createElement("div", { style: { color: MUTED, fontSize: 11 } }, "Analysoidaan...")
-          : React.createElement("div", { style: { fontSize: 12, lineHeight: 1.7, whiteSpace: "pre-wrap" } }, ai)
-      ),
+     
 
       tab === "scan" && stocks.length > 0 && React.createElement("div", null,
         buys.length > 0 && React.createElement("div", null,
