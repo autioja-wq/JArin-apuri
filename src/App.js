@@ -70,7 +70,7 @@ function signal(r, m, s5, s20) {
 
 async function fetchStock(ticker, exchange) {
   var symbol = ticker + ".HE";
-  var url = "https://query1.finance.yahoo.com/v8/finance/chart/" + symbol + "?interval=1d&range=60d";
+  var url = "/api/proxy?symbol=" + symbol;
   var res = await fetch(url);
   if (!res.ok) throw new Error("HTTP " + res.status);
   var json = await res.json();
