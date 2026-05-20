@@ -77,8 +77,8 @@ async function fetchStock(ticker, exchange) {
   var result = json.chart.result[0];
   if (!result) throw new Error("Ei dataa");
   var closes = result.indicators.quote[0].close.filter(function(x) { return x !== null; });
-  var price = result.meta.regularMarketPrice;
-  var prevClose = result.meta.previousClose;
+  var price = closes[closes.length - 1];
+  var prevClose = closes[closes.length - 2] || price;
   var change = ((price - prevClose) / prevClose) * 100;
   return { closes: closes, price: price, change: change };
 }
