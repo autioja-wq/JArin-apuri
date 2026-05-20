@@ -4,11 +4,15 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'POST') {
-    var response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(req.body)
-    });
+var response = await fetch('https://api.anthropic.com/v1/messages', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-key': 'TÄHÄN_ANTHROPIC_API_AVAIN',
+    'anthropic-version': '2023-06-01'
+  },
+  body: JSON.stringify(req.body)
+});
     var data = await response.json();
     return res.status(200).json(data);
   }
