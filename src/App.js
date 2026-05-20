@@ -142,9 +142,7 @@ function App() {
     setStocks(results); setPct(100); setLoading(false);
     var valid = results.filter(function(s) { return !s.err; });
     if (!valid.length) { setAi("Datahaku epaonnistui: " + (results[0] && results[0].err)); return; }
-    setAiLoad(true);
-    try { setAi(await askAI(valid)); } catch(e) { setAi("AI virhe: " + e.message); }
-    setAiLoad(false);
+
   }, [sel]);
 
   var buys = stocks.filter(function(s) { return s.sig && s.sig.sig === "OSTA"; }).sort(function(a, b) { return b.sig.score - a.sig.score; });
